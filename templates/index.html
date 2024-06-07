@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>レース一覧</title>
+</head>
+<body>
+    <h1>レース一覧</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>名前</th>
+                <th>日付</th>
+                <th>参加者数</th>
+                <th>勝者</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for race in races %}
+            <tr>
+                <td>{{ race.name }}</td>
+                <td>{{ race.date }}</td>
+                <td>{{ race.participants }}</td>
+                <td>{{ race.winner }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h2>新しいレースを追加</h2>
+    <form action="{{ url_for('add_race') }}" method="POST">
+        <label for="name">名前:</label>
+        <input type="text" id="name" name="name" required><br>
+        <label for="date">日付:</label>
+        <input type="text" id="date" name="date" required><br>
+        <label for="participants">参加者数:</label>
+        <input type="number" id="participants" name="participants" required><br>
+        <label for="winner">勝者:</label>
+        <input type="text" id="winner" name="winner" required><br>
+        <input type="submit" value="追加">
+    </form>
+</body>
+</html>
