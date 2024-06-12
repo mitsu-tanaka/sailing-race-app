@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: sailing-race-app
+    env: python
+    region: oregon
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    envVars:
+      - key: DATABASE_URL
+        value: sqlite:////opt/render/project/src/sailing-race-app.db
+    migrateCommand: flask db upgrade
+
